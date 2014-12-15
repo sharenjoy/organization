@@ -1,0 +1,22 @@
+{
+    "name": "sharenjoy/organization",
+    "description": "",
+    "authors": [
+        {
+            "name": "Ronald Jian",
+            "email": "ronald.jian@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Sharenjoy\\Organization": "src/"
+        },
+        "classmap": [
+            "src/migrations"
+        ]
+    },
+    "minimum-stability": "dev"
+}
