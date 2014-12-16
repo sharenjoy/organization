@@ -1,9 +1,8 @@
 <?php namespace Sharenjoy\Organization\Controllers;
 
-use Sharenjoy\Cmsharenjoy\Controllers\ObjectBaseController;
 use Sharenjoy\Organization\Contracts\EmployeeInterface;
 
-class EmployeeController extends ObjectBaseController {
+class EmployeeController extends OrganizationController {
 
     protected $functionRules = [
         'list'   => true,

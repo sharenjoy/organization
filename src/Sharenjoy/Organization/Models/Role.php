@@ -1,9 +1,8 @@
 <?php namespace Sharenjoy\Organization\Models;
 
-use Sharenjoy\Cmsharenjoy\Core\EloquentBaseModel;
 use Sharenjoy\Organization\Models\Traits\RoleConfigTrait;
 
-class Role extends EloquentBaseModel {
+class Role extends Organization {
 
     use RoleConfigTrait;
     
@@ -17,6 +16,9 @@ class Role extends EloquentBaseModel {
         'sort',
     ];
 
-
+    public function employees()
+    {
+        return $this->belongsToMany($this->getConfig('employee.model'), 'employee_role', 'role_id', 'employee_id');
+    }
 
 }

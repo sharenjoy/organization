@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCompaniesTable extends Migration {
+class CreateEmployeeRoleTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,18 +12,15 @@ class CreateCompaniesTable extends Migration {
 	 */
 	public function up()
 	{
-		if ( ! Schema::hasTable('companies') )
+		if ( ! Schema::hasTable('employee_role') )
         {
-            Schema::create('companies', function($table)
+            Schema::create('employee_role', function($table)
             {
                 $table->engine = 'InnoDB';
 
                 $table->increments('id')->index();
-                $table->integer('user_id')->default(0);
-                $table->string('name', 255);
-                $table->string('slug', 255)->unique();
-                $table->text('description')->nullable();
-                $table->integer('sort')->default(0);
+                $table->integer('employee_id');
+				$table->integer('role_id');
                 $table->timestamps();
             });
         }
@@ -36,7 +33,7 @@ class CreateCompaniesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('companies');
+		Schema::drop('employee_role');
 	}
 
 }

@@ -1,9 +1,8 @@
 <?php namespace Sharenjoy\Organization\Controllers;
 
-use Sharenjoy\Cmsharenjoy\Controllers\ObjectBaseController;
 use Sharenjoy\Organization\Contracts\DepartmentInterface;
 
-class DepartmentController extends ObjectBaseController {
+class DepartmentController extends OrganizationController {
 
     protected $functionRules = [
         'list'   => true,

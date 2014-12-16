@@ -1,9 +1,8 @@
 <?php namespace Sharenjoy\Organization\Controllers;
 
-use Sharenjoy\Cmsharenjoy\Controllers\ObjectBaseController;
 use Sharenjoy\Organization\Contracts\CompanyInterface;
 
-class CompanyController extends ObjectBaseController {
+class CompanyController extends OrganizationController {
 
     protected $functionRules = [
         'list'   => true,

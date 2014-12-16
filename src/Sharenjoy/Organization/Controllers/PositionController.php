@@ -1,9 +1,8 @@
 <?php namespace Sharenjoy\Organization\Controllers;
 
-use Sharenjoy\Cmsharenjoy\Controllers\ObjectBaseController;
 use Sharenjoy\Organization\Contracts\PositionInterface;
 
-class PositionController extends ObjectBaseController {
+class PositionController extends OrganizationController {
 
     protected $functionRules = [
         'list'   => true,
