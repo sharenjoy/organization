@@ -4,14 +4,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Authentication Driver
+    | Default Organization Driver
     |--------------------------------------------------------------------------
     |
-    | This option controls the authentication driver that will be utilized.
-    | This drivers manages the retrieval and authentication of the users
+    | This option controls the organization driver that will be utilized.
+    | This drivers manages the retrieval and organization of the users
     | attempting to get access to protected areas of your application.
     |
-    | Supported: "eloquent" (more coming soon).
+    | Supported: "eloquent"
     |
     */
 
