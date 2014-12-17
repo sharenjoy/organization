@@ -1,20 +1,8 @@
 <?php namespace Sharenjoy\Organization\Models;
 
-use Sharenjoy\Organization\Models\Traits\PositionConfigTrait;
-
 class Position extends Organization {
-
-    use PositionConfigTrait;
     
     protected $table = 'positions';
-
-    protected $fillable = [
-        'user_id',
-        'title',
-        'slug',
-        'description',
-        'sort',
-    ];
 
     public function employees()
     {

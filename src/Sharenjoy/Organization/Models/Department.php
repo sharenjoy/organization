@@ -1,20 +1,8 @@
 <?php namespace Sharenjoy\Organization\Models;
 
-use Sharenjoy\Organization\Models\Traits\DepartmentConfigTrait;
-
 class Department extends Organization {
-
-    use DepartmentConfigTrait;
     
     protected $table = 'departments';
-
-    protected $fillable = [
-        'user_id',
-        'title',
-        'slug',
-        'description',
-        'sort',
-    ];
 
     public function employees()
     {

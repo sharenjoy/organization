@@ -1,10 +1,9 @@
 <?php namespace Sharenjoy\Organization\Handlers;
 
-use Sharenjoy\Cmsharenjoy\Core\EloquentBaseHandler;
 use Sharenjoy\Cmsharenjoy\Service\Validation\ValidableInterface;
 use Sharenjoy\Organization\Contracts\PositionInterface;
 
-class PositionHandler extends EloquentBaseHandler implements PositionInterface {
+class PositionHandler extends OrganizationHandler implements PositionInterface {
 
     public function __construct($model, ValidableInterface $validator)
     {

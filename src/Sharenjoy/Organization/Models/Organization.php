@@ -16,7 +16,7 @@ abstract class Organization extends EloquentBaseModel {
 
         $config = array_get(static::$modelConfig, $key);
 
-        if (is_null($config))
+        if ( ! $config)
         {
             throw new \InvalidArgumentException('This is invalid argument');
         }
