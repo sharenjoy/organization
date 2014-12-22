@@ -21,7 +21,6 @@ class CreatCompanyPositionTable extends Migration {
                 $table->increments('id')->index();
                 $table->integer('company_id');
 				$table->integer('position_id');
-                $table->timestamps();
             });
         }
 	}

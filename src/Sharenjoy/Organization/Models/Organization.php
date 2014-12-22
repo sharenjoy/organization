@@ -1,9 +1,9 @@
 <?php namespace Sharenjoy\Organization\Models;
 
-use Sharenjoy\Cmsharenjoy\Core\EloquentBaseModel;
-use Config;
+use Sharenjoy\Cmsharenjoy\Core\Traits\CommonModelTrait;
+use Eloquent, Config;
 
-abstract class Organization extends EloquentBaseModel {
+abstract class Organization extends Eloquent {
     
     protected static $modelConfig = null;
 

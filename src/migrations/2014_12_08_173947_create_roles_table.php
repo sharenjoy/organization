@@ -19,7 +19,6 @@ class CreateRolesTable extends Migration {
                 $table->engine = 'InnoDB';
 
                 $table->increments('id')->index();
-                $table->integer('user_id')->index()->default(0);
                 $table->string('name', 255);
                 $table->string('slug', 255)->unique();
                 $table->text('description')->nullable();

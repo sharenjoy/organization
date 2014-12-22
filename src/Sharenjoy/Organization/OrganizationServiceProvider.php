@@ -89,6 +89,22 @@ class OrganizationServiceProvider extends ServiceProvider {
             }
         });
 
+        $this->app->bindShared('Sharenjoy\Organization\Contracts\DivisionInterface', function() use ($config)
+        {
+            switch ($config['driver'])
+            {
+                case 'eloquent':
+                    return new $config['division']['handler'](
+                        new $config['division']['model'],
+                        new $config['division']['validator']
+                    );
+                    break;
+
+                default:
+                    throw new \InvalidArgumentException('Invalid handler driver.');
+            }
+        });
+
         $this->app->bindShared('Sharenjoy\Organization\Contracts\RoleInterface', function() use ($config)
         {
             switch ($config['driver'])
@@ -136,6 +152,9 @@ class OrganizationServiceProvider extends ServiceProvider {
 
         // For position
         AliasLoader::getInstance()->alias('Position', 'Sharenjoy\Organization\Facades\Position');
+
+        // For division
+        AliasLoader::getInstance()->alias('Division', 'Sharenjoy\Organization\Facades\Division');
 
         // For role
         AliasLoader::getInstance()->alias('Role', 'Sharenjoy\Organization\Facades\Role');

@@ -11,9 +11,7 @@ class Position extends Organization {
 
     public function companies()
     {
-        $model = $this->getConfig('company.model');
-
-        return $this->belongsToMany($model, 'company_position', 'position_id', 'company_id');
+        return $this->belongsToMany($this->getConfig('company.model'));
     }
 
 }

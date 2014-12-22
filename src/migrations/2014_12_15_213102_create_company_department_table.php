@@ -21,7 +21,6 @@ class CreateCompanyDepartmentTable extends Migration {
                 $table->increments('id')->index();
                 $table->integer('company_id');
 				$table->integer('department_id');
-                $table->timestamps();
             });
         }
 	}

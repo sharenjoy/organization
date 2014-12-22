@@ -11,9 +11,12 @@ class Department extends Organization {
 
     public function companies()
     {
-        $model = $this->getConfig('company.model');
+        return $this->belongsToMany($this->getConfig('company.model'));
+    }
 
-        return $this->belongsToMany($model, 'company_department', 'department_id', 'company_id');
+    public function divisions()
+    {
+        return $this->hasMany($this->getConfig('division.model'));
     }
 
 }

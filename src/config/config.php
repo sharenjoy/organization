@@ -97,6 +97,48 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Division
+    |--------------------------------------------------------------------------
+    |
+    | Configuration specific to the division management component of Organization.
+    |
+    */
+
+    'division' => [
+
+        /*
+        |--------------------------------------------------------------------------
+        | Model, Handler, Validator
+        |--------------------------------------------------------------------------
+        |
+        */
+
+        'model' => 'Sharenjoy\Organization\Models\Division',
+
+        'handler' => 'Sharenjoy\Organization\Handlers\DivisionHandler',
+        
+        'validator' => 'Sharenjoy\Organization\Validators\DivisionValidator',
+
+        /*
+        |--------------------------------------------------------------------------
+        | These are allowed model divisionable
+        | key: The key is relationshop method of model
+        | value: This is relationship
+        | sample: 'employees' => 'Sharenjoy\Organization\Models\Employee'
+        |--------------------------------------------------------------------------
+        |
+        */
+       
+        'morphed' => [
+
+            'employees' => 'Sharenjoy\Organization\Models\Employee',
+
+        ],
+
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Role
     |--------------------------------------------------------------------------
     |
@@ -118,6 +160,22 @@ return [
         'handler' => 'Sharenjoy\Organization\Handlers\RoleHandler',
         
         'validator' => 'Sharenjoy\Organization\Validators\RoleValidator',
+
+        /*
+        |--------------------------------------------------------------------------
+        | These are allowed model roleable
+        | key: The key is relationshop method of model
+        | value: This is relationship
+        | sample: 'Sharenjoy\Organization\Models\Employee'
+        |--------------------------------------------------------------------------
+        |
+        */
+       
+        'morphed' => [
+
+            'employees' => 'Sharenjoy\Organization\Models\Employee',
+
+        ],
 
     ],
 
