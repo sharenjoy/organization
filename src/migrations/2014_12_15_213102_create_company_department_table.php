@@ -18,9 +18,8 @@ class CreateCompanyDepartmentTable extends Migration {
             {
                 $table->engine = 'InnoDB';
 
-                $table->increments('id')->index();
-                $table->integer('company_id');
-				$table->integer('department_id');
+                $table->integer('company_id')->index();
+				$table->integer('department_id')->index();
             });
         }
 	}

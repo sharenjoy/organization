@@ -18,9 +18,8 @@ class CreateDivisionRoleTable extends Migration {
             {
                 $table->engine = 'InnoDB';
 
-                $table->increments('id')->index();
-                $table->integer('division_id');
-				$table->integer('role_id');
+                $table->integer('division_id')->index();
+				$table->integer('role_id')->index();
             });
         }
 	}
