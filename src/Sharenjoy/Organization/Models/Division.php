@@ -8,27 +8,38 @@ class Division extends Organization {
 
     public function department()
     {
-        return $this->belongsTo($this->getConfig('department.model'));
+        return $this->belongsTo($this->getOrganizationConfig('department.model'));
     }
 
     public function roles()
     {
-        return $this->belongsToMany($this->getConfig('role.model'));
+        return $this->belongsToMany($this->getOrganizationConfig('role.model'));
     }
 
-    public function morphed(string $method)
+    public static function withAllRelation()
     {
         $morphed = Config::get('organization::division.morphed');
+        
+        $keys = array_keys($morphed);
 
-        if (array_key_exists($method, $morphed))
-        {
-            return $this->morphedByMany($morphed[$method], 'divisionable');
-        }
+        return static::with($keys);
     }
 
     public function scopeCrossed($query, $value)
     {
         return $value ? $query->where('crossed', $value) : $query;
+    }
+
+    public function __call($method, $parameters)
+    {
+        $morphed = $this->getOrganizationConfig('division.morphed');
+
+        if (array_key_exists($method, $morphed))
+        {
+            return $this->morphedByMany($morphed[$method], 'divisionable');
+        }
+
+        return parent::__call($method, $parameters);
     }
 
 }

@@ -1,7 +1,7 @@
 <?php namespace Sharenjoy\Organization\Models;
 
-use SharenjoyOrganization\Models\Traits\RoleableTrait;
-use SharenjoyOrganization\Models\Traits\DivisionableTrait;
+use Sharenjoy\Organization\Models\Traits\RoleableTrait;
+use Sharenjoy\Organization\Models\Traits\DivisionableTrait;
 
 class Employee extends Organization {
 
@@ -12,17 +12,17 @@ class Employee extends Organization {
 
     public function company()
     {
-        return $this->belongsTo($this->getConfig('company.model'));
+        return $this->belongsTo($this->getOrganizationConfig('company.model'));
     }
 
     public function department()
     {
-        return $this->belongsTo($this->getConfig('department.model'));
+        return $this->belongsTo($this->getOrganizationConfig('department.model'));
     }
 
     public function position()
     {
-        return $this->belongsTo($this->getConfig('position.model'));
+        return $this->belongsTo($this->getOrganizationConfig('position.model'));
     }
 
 }

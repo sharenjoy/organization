@@ -6,17 +6,17 @@ class Company extends Organization {
 
     public function departments()
     {
-        return $this->belongsToMany($this->getConfig('department.model'));
+        return $this->belongsToMany($this->getOrganizationConfig('department.model'));
     }
 
     public function positions()
     {
-        return $this->belongsToMany($this->getConfig('position.model'));
+        return $this->belongsToMany($this->getOrganizationConfig('position.model'));
     }
 
     public function employees()
     {
-        return $this->hasMany($this->getConfig('employee.model'));
+        return $this->hasMany($this->getOrganizationConfig('employee.model'));
     }
 
 }

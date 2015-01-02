@@ -7,7 +7,7 @@ abstract class Organization extends Eloquent {
     
     protected static $modelConfig = null;
 
-    protected function getConfig($key)
+    protected function getOrganizationConfig($key)
     {
         if (is_null(static::$modelConfig))
         {

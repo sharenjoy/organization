@@ -2,19 +2,19 @@
 
 use Sharenjoy\Cmsharenjoy\Utilities\String;
 
-trait RoleableTrait {
+trait DivisionableTrait {
 
 	/**
-	 * Return collection of roles related to the roleable model
+	 * Return collection of divisions related to the divisionable model
 	 * @return Illuminate\Database\Eloquent\Collection
 	 */
-	public function roles()
+	public function divisions()
 	{
-		return $this->morphToMany($this->getOrganizationConfig('role.model'), 'roleable');
+		return $this->morphToMany($this->getOrganizationConfig('division.model'), 'divisionable');
 	}
 	
 	/**
-	 * Perform the action of roleing the model with the given string
+	 * Perform the action of divisioning the model with the given string
 	 * @param $params string or array
 	 */
 	public function roll($params)
@@ -28,13 +28,13 @@ trait RoleableTrait {
 		$deletions = array_diff($currentSlug, $params);
 		$additions = array_diff($params, $currentSlug);
 		
-		foreach($additions as $param) $this->addRole($param);
-		foreach($deletions as $param) $this->removeRole($param);
+		foreach($additions as $param) $this->addDivision($param);
+		foreach($deletions as $param) $this->removeDivision($param);
 	}
 
 	/**
-	 * Remove the role from this model
-	 * @param $params string or array (or null to remove all roles)
+	 * Remove the division from this model
+	 * @param $params string or array (or null to remove all divisions)
 	 */
 	public function un($params = null)
 	{
@@ -44,7 +44,7 @@ trait RoleableTrait {
 
 			foreach($currentSlug as $param)
 			{
-				$this->removeRole($param);
+				$this->removeDivision($param);
 			}
 
 			return;
@@ -54,12 +54,12 @@ trait RoleableTrait {
 		
 		foreach($params as $param)
 		{
-			$this->removeRole($this->format($param));
+			$this->removeDivision($this->format($param));
 		}
 	}
 
 	/**
-	 * Add the role from this model
+	 * Add the division from this model
 	 * @param string|array $param
 	 */
 	public function in($params)
@@ -68,97 +68,97 @@ trait RoleableTrait {
 		
 		foreach($params as $param)
 		{
-			$this->addRole($this->format($param));
+			$this->addDivision($this->format($param));
 		}
 	}
 	
 	/**
-	 * Return array of the role names related to the current model
+	 * Return array of the division names related to the current model
 	 * @return array
 	 */
 	public function fetchSlugs()
 	{
-		return $this->roles()->get()->lists('slug');
+		return $this->divisions()->get()->lists('slug');
 	}
 	
 	/**
-	 * Adds a single role
+	 * Adds a single division
 	 * 
 	 * @param $param string
 	 */
-	private function addRole($param)
+	private function addDivision($param)
 	{
 		if (is_null($param) || $param == '') return;
 
 		// return Builder
-		$model = $this->getOrganizationConfig('role.model');
+		$model = $this->getOrganizationConfig('division.model');
 		$model = new $model;
         
-        $role = $model::where('slug', '=', $param)->first();
+        $division = $model::where('slug', '=', $param)->first();
 		
-		if (is_object($role))
+		if (is_object($division))
 		{
 			// return collection object
-			$rolePivot = $this->roles()->wherePivot('role_id', '=', $role->id)->get();
+			$divisionPivot = $this->divisions()->wherePivot('division_id', '=', $division->id)->get();
 			
-	        if ($rolePivot->count() === 0)
+	        if ($divisionPivot->count() === 0)
 	        {
-	        	$this->roles()->attach($role->id);
+	        	$this->divisions()->attach($division->id);
 	        }
 		}
 		else
 		{
 			$model->name = $param;
 			
-			$this->roles()->save($model);	
+			$this->divisions()->save($model);	
 		}
 	}
 	
 	/**
-	 * Removes a single role
+	 * Removes a single division
 	 * 
 	 * @param $param string
 	 */
-	private function removeRole($param)
+	private function removeDivision($param)
 	{
 		if (is_null($param) || $param == '') return;
 
-		$model = $this->getOrganizationConfig('role.model');
+		$model = $this->getOrganizationConfig('division.model');
 		$model = new $model;
 
-        $role = $model::where('slug', '=', $param)->first();
+        $division = $model::where('slug', '=', $param)->first();
 
-		if (is_object($role))
+		if (is_object($division))
 		{
 			// return collection object
-			$rolePivot = $this->roles()->wherePivot('role_id', '=', $role->id)->get();
+			$divisionPivot = $this->divisions()->wherePivot('division_id', '=', $division->id)->get();
 			
-	        if ($rolePivot->count()) $this->roles()->detach($role->id);
+	        if ($divisionPivot->count()) $this->divisions()->detach($division->id);
 		}
 	}
 
 	/**
-	 * Filter model to subset with the given roles
+	 * Filter model to subset with the given divisions
 	 * @param $params array|string
 	 */
-	public function scopeWithAnyRole($query, $params)
+	public function scopeWithAnyDivision($query, $params)
 	{
 		$params = $this->makeArray($params);
 
 		foreach($params as $key => $param)
 			$params[$key] = $this->format($param);
 		
-		return $query->whereHas('roles', function($q) use($params)
+		return $query->whereHas('divisions', function($q) use($params)
 		{
 			$q->whereIn('slug', $params);
 		});
 	}
 
 	/**
-	 * Filter model to subset with the given roles
+	 * Filter model to subset with the given divisions
 	 * @param $params array|string
 	 */
-	public function scopeWithAllRoles($query, $params)
+	public function scopeWithAllDivisions($query, $params)
 	{
 		$params = $this->makeArray($params);
 		
@@ -166,7 +166,7 @@ trait RoleableTrait {
 		{
 			$param = $this->format($param);
 
-			$query->whereHas('roles', function($q) use($param)
+			$query->whereHas('divisions', function($q) use($param)
 			{
 				$q->where('slug', '=', $param);
 			});
