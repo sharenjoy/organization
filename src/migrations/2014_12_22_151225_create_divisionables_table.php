@@ -18,8 +18,8 @@ class CreateDivisionablesTable extends Migration {
             {
                 $table->engine = 'InnoDB';
 
-                $table->integer('division_id')->index();
-                // $table->foreign('division_id')->references('id')->on('divisions')->onDelete('cascade');
+                $table->integer('division_id')->index()->unsigned();
+                $table->foreign('division_id')->references('id')->on('divisions')->onDelete('cascade');
 
                 $table->string('divisionable_id', 36)->index();
                 $table->string('divisionable_type', 255)->index();

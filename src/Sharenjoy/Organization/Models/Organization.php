@@ -4,6 +4,8 @@ use Sharenjoy\Cmsharenjoy\Core\Traits\CommonModelTrait;
 use Eloquent, Config;
 
 abstract class Organization extends Eloquent {
+
+    use CommonModelTrait;
     
     protected static $modelConfig = null;
 
@@ -22,6 +24,11 @@ abstract class Organization extends Eloquent {
         }
 
         return $config;
+    }
+
+    public function listQuery()
+    {
+        return $this->orderBy('created_at', 'desc');
     }
     
 }

@@ -46,14 +46,14 @@ class OrganizationServiceProvider extends ServiceProvider {
             switch ($config['driver'])
             {
                 case 'eloquent':
-                    return new $config['company']['handler'](
+                    return new $config['company']['repoistory'](
                         new $config['company']['model'],
                         new $config['company']['validator']
                     );
                     break;
 
                 default:
-                    throw new \InvalidArgumentException('Invalid handler driver.');
+                    throw new \InvalidArgumentException('Invalid repoistory driver.');
             }
         });
 
@@ -62,14 +62,14 @@ class OrganizationServiceProvider extends ServiceProvider {
             switch ($config['driver'])
             {
                 case 'eloquent':
-                    return new $config['department']['handler'](
+                    return new $config['department']['repoistory'](
                         new $config['department']['model'],
                         new $config['department']['validator']
                     );
                     break;
 
                 default:
-                    throw new \InvalidArgumentException('Invalid handler driver.');
+                    throw new \InvalidArgumentException('Invalid repoistory driver.');
             }
         });
 
@@ -78,14 +78,14 @@ class OrganizationServiceProvider extends ServiceProvider {
             switch ($config['driver'])
             {
                 case 'eloquent':
-                    return new $config['position']['handler'](
+                    return new $config['position']['repoistory'](
                         new $config['position']['model'],
                         new $config['position']['validator']
                     );
                     break;
 
                 default:
-                    throw new \InvalidArgumentException('Invalid handler driver.');
+                    throw new \InvalidArgumentException('Invalid repoistory driver.');
             }
         });
 
@@ -94,14 +94,14 @@ class OrganizationServiceProvider extends ServiceProvider {
             switch ($config['driver'])
             {
                 case 'eloquent':
-                    return new $config['division']['handler'](
+                    return new $config['division']['repoistory'](
                         new $config['division']['model'],
                         new $config['division']['validator']
                     );
                     break;
 
                 default:
-                    throw new \InvalidArgumentException('Invalid handler driver.');
+                    throw new \InvalidArgumentException('Invalid repoistory driver.');
             }
         });
 
@@ -110,14 +110,14 @@ class OrganizationServiceProvider extends ServiceProvider {
             switch ($config['driver'])
             {
                 case 'eloquent':
-                    return new $config['role']['handler'](
+                    return new $config['role']['repoistory'](
                         new $config['role']['model'],
                         new $config['role']['validator']
                     );
                     break;
 
                 default:
-                    throw new \InvalidArgumentException('Invalid handler driver.');
+                    throw new \InvalidArgumentException('Invalid repoistory driver.');
             }
         });
 
@@ -126,14 +126,14 @@ class OrganizationServiceProvider extends ServiceProvider {
             switch ($config['driver'])
             {
                 case 'eloquent':
-                    return new $config['employee']['handler'](
+                    return new $config['employee']['repoistory'](
                         new $config['employee']['model'],
                         new $config['employee']['validator']
                     );
                     break;
 
                 default:
-                    throw new \InvalidArgumentException('Invalid handler driver.');
+                    throw new \InvalidArgumentException('Invalid repoistory driver.');
             }
         });
 	}

@@ -1,9 +1,9 @@
-<?php namespace Sharenjoy\Organization\Handlers;
+<?php namespace Sharenjoy\Organization\Repoistories;
 
 use Sharenjoy\Cmsharenjoy\Service\Validation\ValidableInterface;
-use Sharenjoy\Organization\Contracts\CompanyInterface;
+use Sharenjoy\Organization\Contracts\PositionInterface;
 
-class CompanyHandler extends OrganizationHandler implements CompanyInterface {
+class PositionRepoistory extends OrganizationRepoistory implements PositionInterface {
 
     public function __construct($model, ValidableInterface $validator)
     {

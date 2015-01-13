@@ -30,16 +30,16 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | Model, Handler, Validator
+        | Model, Repoistory, Validator
         |--------------------------------------------------------------------------
         |
         */
 
-        'model' => 'Sharenjoy\Organization\Models\Company',
-
-        'handler' => 'Sharenjoy\Organization\Handlers\CompanyHandler',
+        'model'      => 'Sharenjoy\Organization\Models\Company',
         
-        'validator' => 'Sharenjoy\Organization\Validators\CompanyValidator',
+        'repoistory' => 'Sharenjoy\Organization\Repoistories\CompanyRepoistory',
+        
+        'validator'  => 'Sharenjoy\Organization\Validators\CompanyValidator',
 
     ],
 
@@ -56,16 +56,16 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | Model, Handler, Validator
+        | Model, Repoistory, Validator
         |--------------------------------------------------------------------------
         |
         */
 
-        'model' => 'Sharenjoy\Organization\Models\Department',
-
-        'handler' => 'Sharenjoy\Organization\Handlers\DepartmentHandler',
+        'model'      => 'Sharenjoy\Organization\Models\Department',
         
-        'validator' => 'Sharenjoy\Organization\Validators\DepartmentValidator',
+        'repoistory' => 'Sharenjoy\Organization\Repoistories\DepartmentRepoistory',
+        
+        'validator'  => 'Sharenjoy\Organization\Validators\DepartmentValidator',
 
     ],
 
@@ -82,16 +82,16 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | Model, Handler, Validator
+        | Model, Repoistory, Validator
         |--------------------------------------------------------------------------
         |
         */
 
-        'model' => 'Sharenjoy\Organization\Models\Position',
-
-        'handler' => 'Sharenjoy\Organization\Handlers\PositionHandler',
+        'model'      => 'Sharenjoy\Organization\Models\Position',
         
-        'validator' => 'Sharenjoy\Organization\Validators\PositionValidator',
+        'repoistory' => 'Sharenjoy\Organization\Repoistories\PositionRepoistory',
+        
+        'validator'  => 'Sharenjoy\Organization\Validators\PositionValidator',
 
     ],
 
@@ -108,16 +108,16 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | Model, Handler, Validator
+        | Model, Repoistory, Validator
         |--------------------------------------------------------------------------
         |
         */
 
-        'model' => 'Sharenjoy\Organization\Models\Division',
-
-        'handler' => 'Sharenjoy\Organization\Handlers\DivisionHandler',
+        'model'      => 'Sharenjoy\Organization\Models\Division',
         
-        'validator' => 'Sharenjoy\Organization\Validators\DivisionValidator',
+        'repoistory' => 'Sharenjoy\Organization\Repoistories\DivisionRepoistory',
+        
+        'validator'  => 'Sharenjoy\Organization\Validators\DivisionValidator',
 
         /*
         |--------------------------------------------------------------------------
@@ -150,16 +150,16 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | Model, Handler, Validator
+        | Model, Repoistory, Validator
         |--------------------------------------------------------------------------
         |
         */
 
-        'model' => 'Sharenjoy\Organization\Models\Role',
-
-        'handler' => 'Sharenjoy\Organization\Handlers\RoleHandler',
+        'model'      => 'Sharenjoy\Organization\Models\Role',
         
-        'validator' => 'Sharenjoy\Organization\Validators\RoleValidator',
+        'repoistory' => 'Sharenjoy\Organization\Repoistories\RoleRepoistory',
+        
+        'validator'  => 'Sharenjoy\Organization\Validators\RoleValidator',
 
         /*
         |--------------------------------------------------------------------------
@@ -192,16 +192,16 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | Model, Handler, Validator
+        | Model, Repoistory, Validator
         |--------------------------------------------------------------------------
         |
         */
 
-        'model' => 'Sharenjoy\Organization\Models\Employee',
-
-        'handler' => 'Sharenjoy\Organization\Handlers\EmployeeHandler',
+        'model'      => 'Sharenjoy\Organization\Models\Employee',
         
-        'validator' => 'Sharenjoy\Organization\Validators\EmployeeValidator',
+        'repoistory' => 'Sharenjoy\Organization\Repoistories\EmployeeRepoistory',
+        
+        'validator'  => 'Sharenjoy\Organization\Validators\EmployeeValidator',
 
     ],
 
