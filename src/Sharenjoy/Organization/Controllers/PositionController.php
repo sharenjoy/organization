@@ -17,9 +17,10 @@ class PositionController extends OrganizationController {
         'created_at'   => ['name'=>'created',      'align'=>'center', 'width'=>'20%'],
     ];
 
-    public function __construct(PositionInterface $handler)
+    public function __construct(PositionInterface $repo)
     {
-        $this->handler = $handler;
+        $this->repo = $repo;
+        
         parent::__construct();
     }
 

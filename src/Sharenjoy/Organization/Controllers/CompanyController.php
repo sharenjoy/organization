@@ -17,9 +17,10 @@ class CompanyController extends OrganizationController {
         'created_at'   => ['name'=>'created',      'align'=>'center', 'width'=>'20%'],
     ];
 
-    public function __construct(CompanyInterface $handler)
+    public function __construct(CompanyInterface $repo)
     {
-        $this->handler = $handler;
+        $this->repo = $repo;
+        
         parent::__construct();
     }
 

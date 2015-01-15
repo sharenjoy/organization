@@ -1,11 +1,13 @@
 <?php namespace Sharenjoy\Organization\Models;
 
 use Sharenjoy\Cmsharenjoy\Core\Traits\CommonModelTrait;
+use Sharenjoy\Cmsharenjoy\Core\Traits\EventModelTrait;
 use Eloquent, Config;
 
 abstract class Organization extends Eloquent {
 
     use CommonModelTrait;
+    use EventModelTrait;
     
     protected static $modelConfig = null;
 
@@ -28,7 +30,7 @@ abstract class Organization extends Eloquent {
 
     public function listQuery()
     {
-        return $this->orderBy('created_at', 'desc');
+        return $this->orderBy('sort', 'desc');
     }
     
 }

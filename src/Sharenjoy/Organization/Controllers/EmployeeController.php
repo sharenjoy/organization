@@ -17,9 +17,10 @@ class EmployeeController extends OrganizationController {
         'created_at'   => ['name'=>'created',      'align'=>'center', 'width'=>'20%'],
     ];
 
-    public function __construct(EmployeeInterface $handler)
+    public function __construct(EmployeeInterface $repo)
     {
-        $this->handler = $handler;
+        $this->repo = $repo;
+        
         parent::__construct();
     }
 

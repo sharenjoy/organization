@@ -37,7 +37,7 @@ return [
 
         'model'      => 'Sharenjoy\Organization\Models\Company',
         
-        'repoistory' => 'Sharenjoy\Organization\Repoistories\CompanyRepoistory',
+        'repository' => 'Sharenjoy\Organization\Repositories\CompanyRepository',
         
         'validator'  => 'Sharenjoy\Organization\Validators\CompanyValidator',
 
@@ -63,7 +63,7 @@ return [
 
         'model'      => 'Sharenjoy\Organization\Models\Department',
         
-        'repoistory' => 'Sharenjoy\Organization\Repoistories\DepartmentRepoistory',
+        'repository' => 'Sharenjoy\Organization\Repositories\DepartmentRepository',
         
         'validator'  => 'Sharenjoy\Organization\Validators\DepartmentValidator',
 
@@ -89,7 +89,7 @@ return [
 
         'model'      => 'Sharenjoy\Organization\Models\Position',
         
-        'repoistory' => 'Sharenjoy\Organization\Repoistories\PositionRepoistory',
+        'repository' => 'Sharenjoy\Organization\Repositories\PositionRepository',
         
         'validator'  => 'Sharenjoy\Organization\Validators\PositionValidator',
 
@@ -115,7 +115,7 @@ return [
 
         'model'      => 'Sharenjoy\Organization\Models\Division',
         
-        'repoistory' => 'Sharenjoy\Organization\Repoistories\DivisionRepoistory',
+        'repository' => 'Sharenjoy\Organization\Repositories\DivisionRepository',
         
         'validator'  => 'Sharenjoy\Organization\Validators\DivisionValidator',
 
@@ -157,7 +157,7 @@ return [
 
         'model'      => 'Sharenjoy\Organization\Models\Role',
         
-        'repoistory' => 'Sharenjoy\Organization\Repoistories\RoleRepoistory',
+        'repository' => 'Sharenjoy\Organization\Repositories\RoleRepository',
         
         'validator'  => 'Sharenjoy\Organization\Validators\RoleValidator',
 
@@ -199,7 +199,7 @@ return [
 
         'model'      => 'Sharenjoy\Organization\Models\Employee',
         
-        'repoistory' => 'Sharenjoy\Organization\Repoistories\EmployeeRepoistory',
+        'repository' => 'Sharenjoy\Organization\Repositories\EmployeeRepository',
         
         'validator'  => 'Sharenjoy\Organization\Validators\EmployeeValidator',
 

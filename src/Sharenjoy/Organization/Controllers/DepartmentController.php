@@ -17,9 +17,10 @@ class DepartmentController extends OrganizationController {
         'created_at'   => ['name'=>'created',      'align'=>'center', 'width'=>'20%'],
     ];
 
-    public function __construct(DepartmentInterface $handler)
+    public function __construct(DepartmentInterface $repo)
     {
-        $this->handler = $handler;
+        $this->repo = $repo;
+        
         parent::__construct();
     }
 

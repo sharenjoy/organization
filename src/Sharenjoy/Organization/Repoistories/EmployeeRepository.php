@@ -1,9 +1,9 @@
-<?php namespace Sharenjoy\Organization\Repoistories;
+<?php namespace Sharenjoy\Organization\Repositories;
 
 use Sharenjoy\Cmsharenjoy\Service\Validation\ValidableInterface;
-use Sharenjoy\Organization\Contracts\DepartmentInterface;
+use Sharenjoy\Organization\Contracts\EmployeeInterface;
 
-class DepartmentRepoistory extends OrganizationRepoistory implements DepartmentInterface {
+class EmployeeRepository extends OrganizationRepository implements EmployeeInterface {
 
     public function __construct($model, ValidableInterface $validator)
     {

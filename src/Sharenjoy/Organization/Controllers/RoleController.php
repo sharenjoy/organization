@@ -17,9 +17,10 @@ class RoleController extends OrganizationController {
         'created_at'   => ['name'=>'created',      'align'=>'center', 'width'=>'20%'],
     ];
 
-    public function __construct(RoleInterface $handler)
+    public function __construct(RoleInterface $repo)
     {
-        $this->handler = $handler;
+        $this->repo = $repo;
+        
         parent::__construct();
     }
 
