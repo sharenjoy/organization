@@ -12,8 +12,4 @@ class CompanyRepository extends OrganizationRepository implements CompanyInterfa
     }
 
     
-
-    
-
-
 }
