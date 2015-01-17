@@ -1,7 +1,5 @@
 <?php namespace Sharenjoy\Organization\Models\Traits;
 
-use Sharenjoy\Cmsharenjoy\Utilities\String;
-
 trait RoleableTrait {
 
 	/**
@@ -11,74 +9,6 @@ trait RoleableTrait {
 	public function roles()
 	{
 		return $this->morphToMany($this->getOrganizationConfig('role.model'), 'roleable');
-	}
-	
-	/**
-	 * Perform the action of roleing the model with the given string
-	 * @param $params string or array
-	 */
-	public function roll($params)
-	{
-		$params = $this->makeArray($params);
-		$currentSlug = $this->fetchSlugs();
-
-		// do some format for the string
-		foreach ($params as $key => $value) $params[$key] = $this->format($value);
-
-		$deletions = array_diff($currentSlug, $params);
-		$additions = array_diff($params, $currentSlug);
-		
-		foreach($additions as $param) $this->addRole($param);
-		foreach($deletions as $param) $this->removeRole($param);
-	}
-
-	/**
-	 * Remove the role from this model
-	 * @param $params string or array (or null to remove all roles)
-	 */
-	public function un($params = null)
-	{
-		if (is_null($params))
-		{
-			$currentSlug = $this->fetchSlugs();
-
-			foreach($currentSlug as $param)
-			{
-				$this->removeRole($param);
-			}
-
-			return;
-		}
-
-		$params = $this->makeArray($params);
-		
-		foreach($params as $param)
-		{
-			$this->removeRole($this->format($param));
-		}
-	}
-
-	/**
-	 * Add the role from this model
-	 * @param string|array $param
-	 */
-	public function in($params)
-	{
-		$params = $this->makeArray($params);
-		
-		foreach($params as $param)
-		{
-			$this->addRole($this->format($param));
-		}
-	}
-	
-	/**
-	 * Return array of the role names related to the current model
-	 * @return array
-	 */
-	public function fetchSlugs()
-	{
-		return $this->roles()->get()->lists('slug');
 	}
 	
 	/**
@@ -173,37 +103,6 @@ trait RoleableTrait {
 		}
 		
 		return $query;
-	}
-
-	/**
-	 * To format a string
-	 * @param  string $param
-	 * @return String
-	 */
-	protected function format($param)
-	{
-		return String::slug(trim($param));
-	}
-
-	/**
-	 * Converts input into array
-	 * @param $param string or array
-	 * @return array
-	 */
-	protected function makeArray($params)
-	{
-		if (is_string($params))
-		{
-			$params = explode(',', $params);
-		}
-		elseif ( ! is_array($params))
-		{
-			$params = array(null);
-		}
-		
-		$params = array_map('trim', $params);
-
-		return $params;
 	}
 
 }

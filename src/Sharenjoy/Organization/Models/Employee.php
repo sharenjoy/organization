@@ -1,5 +1,6 @@
 <?php namespace Sharenjoy\Organization\Models;
 
+use Sharenjoy\Organization\Models\Traits\MorphBaseTrait;
 use Sharenjoy\Organization\Models\Traits\RoleableTrait;
 use Sharenjoy\Organization\Models\Traits\DivisionableTrait;
 
@@ -7,6 +8,7 @@ class Employee extends Organization {
 
     use RoleableTrait;
     use DivisionableTrait;
+    use MorphBaseTrait;
     
     protected $table = 'employees';
 
@@ -23,6 +25,11 @@ class Employee extends Organization {
     public function position()
     {
         return $this->belongsTo($this->getOrganizationConfig('position.model'));
+    }
+
+    public function listQuery()
+    {
+        return $this->orderBy('created_at', 'desc');
     }
 
 }
