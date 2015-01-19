@@ -16,7 +16,7 @@ trait RoleableTrait {
 	 * 
 	 * @param $param string
 	 */
-	private function addRole($param)
+	private function addRoles($param)
 	{
 		if (is_null($param) || $param == '') return;
 
@@ -49,7 +49,7 @@ trait RoleableTrait {
 	 * 
 	 * @param $param string
 	 */
-	private function removeRole($param)
+	private function removeRoles($param)
 	{
 		if (is_null($param) || $param == '') return;
 

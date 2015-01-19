@@ -136,6 +136,20 @@ class OrganizationServiceProvider extends ServiceProvider {
                     throw new \InvalidArgumentException('Invalid repository driver.');
             }
         });
+
+        // For provider
+        $this->app->bindShared('Sharenjoy\Organization\Contracts\ProviderInterface', function() use ($config)
+        {
+            switch ($config['driver'])
+            {
+                case 'eloquent':
+                    return new $config['provider'];
+                    break;
+
+                default:
+                    throw new \InvalidArgumentException('Invalid provider driver.');
+            }
+        });
 	}
 
     /**
@@ -161,6 +175,9 @@ class OrganizationServiceProvider extends ServiceProvider {
 
         // For employee
         AliasLoader::getInstance()->alias('Employee', 'Sharenjoy\Organization\Facades\Employee');
+
+        // For organization
+        AliasLoader::getInstance()->alias('Organization', 'Sharenjoy\Organization\Facades\Organization');
     }
 
 	/**

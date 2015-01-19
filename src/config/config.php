@@ -30,6 +30,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Provider name and allow provider
+    |--------------------------------------------------------------------------
+    |
+    | This is provider class name and
+    | allow the provider name
+    |
+    */
+
+    'provider' => 'Sharenjoy\Organization\OrganizationProvider',
+
+    'allowProvider' => ['company', 'department', 'position', 'role', 'division', 'employee'],
+
+    /*
+    |--------------------------------------------------------------------------
     | Company
     |--------------------------------------------------------------------------
     |
@@ -215,5 +229,13 @@ return [
         'validator'  => 'Sharenjoy\Organization\Validators\EmployeeValidator',
 
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Invoice type
+    |--------------------------------------------------------------------------
+    */
+
+    'invoice_type' => [],
 
 ];

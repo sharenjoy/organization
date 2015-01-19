@@ -22,7 +22,10 @@ class CreateEmployeesTable extends Migration {
                 $table->integer('company_id')->index()->default(0);
                 $table->integer('department_id')->index()->default(0);
                 $table->integer('position_id')->index()->default(0);
-                $table->string('name', 255);
+                $table->string('name', 20);
+                $table->string('name_en', 20);
+                $table->string('email', 100);
+                $table->date('joined_at');
                 $table->timestamps();
             });
         }

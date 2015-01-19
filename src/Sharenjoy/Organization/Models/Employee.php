@@ -29,7 +29,7 @@ class Employee extends Organization {
 
     public function listQuery()
     {
-        return $this->orderBy('created_at', 'desc');
+        return $this->orderBy('joined_at');
     }
 
 }

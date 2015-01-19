@@ -18,8 +18,11 @@ class CreateCompanyDepartmentTable extends Migration {
             {
                 $table->engine = 'InnoDB';
 
-                $table->integer('company_id')->index();
-				$table->integer('department_id')->index();
+                $table->integer('company_id')->index()->unsigned();
+                $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+
+				$table->integer('department_id')->index()->unsigned();
+                $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             });
         }
 	}

@@ -19,11 +19,9 @@ class CreateDivisionsTable extends Migration {
                 $table->engine = 'InnoDB';
 
                 $table->increments('id')->index();
-                $table->integer('department_id')->index()->default(0);
                 $table->string('name', 255);
                 $table->string('slug', 255)->unique();
                 $table->text('description')->nullable();
-                $table->enum('crossed', [0, 1])->index()->default(0);
                 $table->integer('sort')->default(0);
                 $table->timestamps();
             });

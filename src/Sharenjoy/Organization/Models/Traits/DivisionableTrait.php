@@ -16,7 +16,7 @@ trait DivisionableTrait {
 	 * 
 	 * @param $param string
 	 */
-	private function addDivision($param)
+	private function addDivisions($param)
 	{
 		if (is_null($param) || $param == '') return;
 
@@ -49,7 +49,7 @@ trait DivisionableTrait {
 	 * 
 	 * @param $param string
 	 */
-	private function removeDivision($param)
+	private function removeDivisions($param)
 	{
 		if (is_null($param) || $param == '') return;
 

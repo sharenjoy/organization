@@ -2,6 +2,7 @@
 
 use Sharenjoy\Cmsharenjoy\Core\Traits\CommonModelTrait;
 use Sharenjoy\Cmsharenjoy\Core\Traits\EventModelTrait;
+use Organization as OrganizationProvider;
 use Eloquent, Config;
 
 abstract class Organization extends Eloquent {
@@ -30,7 +31,32 @@ abstract class Organization extends Eloquent {
 
     public function listQuery()
     {
-        return $this->orderBy('sort', 'desc');
+        return $this->orderBy('sort');
+    }
+
+    /**
+     * This is a method that fetch the lists data
+     * from repository method for drop down select
+     * @param  string $provider
+     * @param  string $columnValue
+     * @param  string $columnKey
+     * @return array
+     */
+    public function getLists($provider, $columnValue = 'name', $columnKey = 'id')
+    {
+        return OrganizationProvider::repo($provider)->showAll()->lists($columnValue, $columnKey);
+    }
+
+    public function syncMorph($model, $morph)
+    {
+        if (empty(self::$inputData[$morph]))
+        {
+            return $model->$morph()->detach();
+        }
+
+        $data = explode(',', self::$inputData[$morph]);
+        
+        return $model->$morph()->sync($data);
     }
     
 }

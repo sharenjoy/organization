@@ -18,8 +18,11 @@ class CreatCompanyPositionTable extends Migration {
             {
                 $table->engine = 'InnoDB';
 
-                $table->integer('company_id')->index();
-				$table->integer('position_id')->index();
+                $table->integer('company_id')->index()->unsigned();
+                $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+                
+				$table->integer('position_id')->index()->unsigned();
+                $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');
             });
         }
 	}

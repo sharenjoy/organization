@@ -18,8 +18,11 @@ class CreateDivisionRoleTable extends Migration {
             {
                 $table->engine = 'InnoDB';
 
-                $table->integer('division_id')->index();
-				$table->integer('role_id')->index();
+                $table->integer('division_id')->index()->unsigned();
+                $table->foreign('division_id')->references('id')->on('divisions')->onDelete('cascade');
+
+				$table->integer('role_id')->index()->unsigned();
+                $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             });
         }
 	}

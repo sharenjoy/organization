@@ -19,25 +19,47 @@ return [
     'division'   => '組別',
     'role'       => '職責',
     'employee'   => '職員',
-
+    'joined'     => '入職日期',
 
     // For form    
     'form' => [
-        // 'name'                    => '名稱',
-        // 'first_name'              => '名字',
-        // 'last_name'               => '姓',
-        // 'type'                    => '類型',
-        
+        'name_en'                 => '英文名稱',
+        'joined_at'               => '入職日期',
+
         'company' => [
             'name'                => '公司名稱',
+            'departments'         => '部門設定',
+            'positions'           => '職位設定',
         ],
 
         'department' => [
             'name'                => '部門名稱',
+            'companies'           => '所屬公司',
         ],
 
         'position' => [
             'name'                => '職位名稱',
+            'companies'           => '所屬公司',
+        ],
+
+        'division' => [
+            'name'                => '組別名稱',
+            'roles'               => '組成職責',
+            'employees'           => '組成職員',
+        ],
+
+        'role' => [
+            'name'                => '職責名稱',
+            'divisions'           => '所屬組別',
+            'employees'           => '所屬職員',
+        ],
+
+        'employee' => [
+            'company_id'          => '所屬公司',
+            'department_id'       => '所屬部門',
+            'position_id'         => '所屬職位',
+            'divisions'           => '所屬組別',
+            'roles'               => '所屬職責',
         ],
 
         'placeholder' => [
@@ -45,26 +67,25 @@ return [
             // 'link'                => 'http://www.example.com.tw',
             // 'slug'                => '例如 google',
             // 'keyword'             => '請輸入您想要篩選的關鍵字',
-            // 'user' => [
-            //     'first_name'      => '請輸入您的名字',
-            //     'last_name'       => '請輸入您的姓',
-            // ],
-            // 'post' => [
-            //     'tag'             => '請使用半型逗號分隔',
+            // 'division' => [
+            //     'employees'           => '可直接透過輸入對應的文字來搜尋',
             // ],
         ],
         
         'help' => [
-            // 'link'                => '請輸入以 http:// 為開頭的連結網址',
-            // 'slug'                => '這是一個只能使用英文字母組成且唯一的判別值',
-            // 'tag'                 => '請使用Enter鍵或使用半型逗號分隔',
-            // 'album'               => '點開啟按鈕開啟管理相簿視窗。可管理附屬於此項目的相簿內容。',
-            // 'user' => [
-            //     'first_name'      => '',
-            // ],
-            // 'post' => [
-            //     'tag'             => '請使用Enter鍵或使用半型逗號分隔',
-            // ],
+            'companies'              => '左邊區塊為未選&nbsp;&nbsp;&nbsp;<-->&nbsp;&nbsp;&nbsp;右邊區塊為已選',
+            'departments'            => '左邊區塊為未選&nbsp;&nbsp;&nbsp;<-->&nbsp;&nbsp;&nbsp;右邊區塊為已選',
+            'positions'              => '左邊區塊為未選&nbsp;&nbsp;&nbsp;<-->&nbsp;&nbsp;&nbsp;右邊區塊為已選',
+            'divisions'              => '左邊區塊為未選&nbsp;&nbsp;&nbsp;<-->&nbsp;&nbsp;&nbsp;右邊區塊為已選',
+            'roles'                  => '左邊區塊為未選&nbsp;&nbsp;&nbsp;<-->&nbsp;&nbsp;&nbsp;右邊區塊為已選',
+            
+            'division' => [
+                'employees'          => '可直接透過輸入對應的文字來搜尋',
+            ],
+
+            'role' => [
+                'employees'          => '可直接透過輸入對應的文字來搜尋',
+            ],
         ],
 
         'validation' => [
