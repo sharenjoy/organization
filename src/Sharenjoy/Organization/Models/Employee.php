@@ -12,6 +12,11 @@ class Employee extends Organization {
     
     protected $table = 'employees';
 
+    public function getDates()
+    {
+        return ['created_at', 'updated_at', 'joined_at'];
+    }
+
     public function company()
     {
         return $this->belongsTo($this->getOrganizationConfig('company.model'));
