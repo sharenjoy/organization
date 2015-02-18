@@ -1,8 +1,8 @@
 <?php namespace Sharenjoy\Organization\Controllers;
 
-use Sharenjoy\Organization\Contracts\DepartmentInterface;
+use Sharenjoy\Organization\Contracts\RoleInterface;
 
-class DepartmentController extends OrganizationController {
+class RoleController extends OrganizationController {
 
     protected $functionRules = [
         'list'   => true,
@@ -13,11 +13,12 @@ class DepartmentController extends OrganizationController {
     ];
 
     protected $listConfig = [
-        'name'         => ['name'=>'name',         'align'=>'',       'width'=>''   ],
+        'name'         => ['name'=>'title',        'align'=>'',       'width'=>''   ],
+        'slug'         => ['name'=>'slug',         'align'=>'',       'width'=>''   ],
         'created_at'   => ['name'=>'created',      'align'=>'center', 'width'=>'20%'],
     ];
 
-    public function __construct(DepartmentInterface $repo)
+    public function __construct(RoleInterface $repo)
     {
         $this->repo = $repo;
         

@@ -2,13 +2,13 @@
 
 use Sharenjoy\Cmsharenjoy\Service\Validation\AbstractLaravelValidator;
 
-class PositionValidator extends AbstractLaravelValidator {
+class DepartmentValidator extends AbstractLaravelValidator {
 
     public $unique = ['slug'];
 
     public $rules = [
-        'title'     => 'required|unique:posts,title',
-        'content'   => 'required'
+        'name' => 'required',
+        'slug' => 'required|alpha|unique:departments,slug',
     ];
 
 }

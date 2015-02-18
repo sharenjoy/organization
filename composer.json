@@ -8,14 +8,11 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0"
+        "laravel/framework": "5.0.*"
     },
     "autoload": {
-        "classmap": [
-            "src/migrations"
-        ],
-        "psr-0": {
-            "Sharenjoy\\Organization": "src/"
+        "psr-4": {
+            "Sharenjoy\\Organization\\": "src/"
         }
     },
     "minimum-stability": "dev"

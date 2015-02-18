@@ -1,8 +1,8 @@
 <?php namespace Sharenjoy\Organization\Controllers;
 
-use Sharenjoy\Organization\Contracts\PositionInterface;
+use Sharenjoy\Organization\Contracts\DivisionInterface;
 
-class PositionController extends OrganizationController {
+class DivisionController extends OrganizationController {
 
     protected $functionRules = [
         'list'   => true,
@@ -13,11 +13,12 @@ class PositionController extends OrganizationController {
     ];
 
     protected $listConfig = [
-        'name'         => ['name'=>'name',         'align'=>'',       'width'=>''   ],
+        'name'         => ['name'=>'title',        'align'=>'',       'width'=>''   ],
+        'slug'         => ['name'=>'slug',         'align'=>'',       'width'=>''   ],
         'created_at'   => ['name'=>'created',      'align'=>'center', 'width'=>'20%'],
     ];
 
-    public function __construct(PositionInterface $repo)
+    public function __construct(DivisionInterface $repo)
     {
         $this->repo = $repo;
         

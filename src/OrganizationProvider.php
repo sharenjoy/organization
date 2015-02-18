@@ -9,7 +9,7 @@ class OrganizationProvider implements ProviderInterface {
 
     public function __construct()
     {
-        $this->allowProvider = Config::get('organization::allowProvider');
+        $this->allowProvider = Config::get('organization.allowProvider');
     }
 
     protected function fetchInstance($key)

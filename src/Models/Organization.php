@@ -16,7 +16,7 @@ abstract class Organization extends Eloquent {
     {
         if (is_null(static::$modelConfig))
         {
-            static::$modelConfig = Config::get('organization::config');
+            static::$modelConfig = Config::get('organization');
         }
 
         $config = array_get(static::$modelConfig, $key);

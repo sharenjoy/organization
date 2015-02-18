@@ -17,31 +17,20 @@ class OrganizationServiceProvider extends ServiceProvider {
 	 *
 	 * @return void
 	 */
-	public function register() {}
+	public function register()
+    {
+        // Merge config to allow user overwrite.
+        $this->mergeConfigFrom(__DIR__.'/../config/organization.php', 'organization');
 
-	/**
-	 * Bootstrap the application events.
-	 *
-	 * @return void
-	 */
-	public function boot()
-	{
-		$this->package('sharenjoy/organization');
-        
-		// Binding a bunch of Provider
+        // Binding a bunch of Provider
         $this->bindProvider();
-
-        // Make some alias
-        $this->makeAlias();
-	}
+    }
 
 	protected function bindProvider()
 	{
-        $config = $this->app['config']->get('organization::config');
+        $config = $this->app['config']->get('organization');
         
-        $driver = $config['driver'];
-        
-        $this->app->bindShared('Sharenjoy\Organization\Contracts\CompanyInterface', function() use ($config)
+        $this->app->singleton('Sharenjoy\Organization\Contracts\CompanyInterface', function() use ($config)
         {
             switch ($config['driver'])
             {
@@ -57,7 +46,7 @@ class OrganizationServiceProvider extends ServiceProvider {
             }
         });
 
-        $this->app->bindShared('Sharenjoy\Organization\Contracts\DepartmentInterface', function() use ($config)
+        $this->app->singleton('Sharenjoy\Organization\Contracts\DepartmentInterface', function() use ($config)
         {
             switch ($config['driver'])
             {
@@ -73,7 +62,7 @@ class OrganizationServiceProvider extends ServiceProvider {
             }
         });
 
-        $this->app->bindShared('Sharenjoy\Organization\Contracts\PositionInterface', function() use ($config)
+        $this->app->singleton('Sharenjoy\Organization\Contracts\PositionInterface', function() use ($config)
         {
             switch ($config['driver'])
             {
@@ -89,7 +78,7 @@ class OrganizationServiceProvider extends ServiceProvider {
             }
         });
 
-        $this->app->bindShared('Sharenjoy\Organization\Contracts\DivisionInterface', function() use ($config)
+        $this->app->singleton('Sharenjoy\Organization\Contracts\DivisionInterface', function() use ($config)
         {
             switch ($config['driver'])
             {
@@ -105,7 +94,7 @@ class OrganizationServiceProvider extends ServiceProvider {
             }
         });
 
-        $this->app->bindShared('Sharenjoy\Organization\Contracts\RoleInterface', function() use ($config)
+        $this->app->singleton('Sharenjoy\Organization\Contracts\RoleInterface', function() use ($config)
         {
             switch ($config['driver'])
             {
@@ -121,7 +110,7 @@ class OrganizationServiceProvider extends ServiceProvider {
             }
         });
 
-        $this->app->bindShared('Sharenjoy\Organization\Contracts\EmployeeInterface', function() use ($config)
+        $this->app->singleton('Sharenjoy\Organization\Contracts\EmployeeInterface', function() use ($config)
         {
             switch ($config['driver'])
             {
@@ -138,7 +127,7 @@ class OrganizationServiceProvider extends ServiceProvider {
         });
 
         // For provider
-        $this->app->bindShared('Sharenjoy\Organization\Contracts\ProviderInterface', function() use ($config)
+        $this->app->singleton('Sharenjoy\Organization\Contracts\ProviderInterface', function() use ($config)
         {
             switch ($config['driver'])
             {
@@ -151,6 +140,34 @@ class OrganizationServiceProvider extends ServiceProvider {
             }
         });
 	}
+
+    /**
+     * Bootstrap the application events.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $accessUrl = $this->app['config']->get('cmsharenjoy.access_url');
+
+        $this->loadViewsFrom(__DIR__.'/../views', 'organization');
+
+        $this->publishes([
+            __DIR__.'/../config/organization.php' => config_path('organization.php'),
+        ], 'config');
+
+        $this->loadTranslationsFrom(__DIR__.'/../lang/', 'organization');
+
+        $this->publishes([
+            __DIR__ . '/../migrations' => base_path('/database/migrations')
+        ], 'migration');
+
+        // Make some alias
+        $this->makeAlias();
+        
+        // Loading routes file
+        include __DIR__ . '/routes.php';
+    }
 
     /**
      * There are some useful alias
