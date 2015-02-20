@@ -1,6 +1,12 @@
 <?php namespace Sharenjoy\Organization\Models;
 
+use Sharenjoy\Organization\Models\Traits\MorphBaseTrait;
+use Sharenjoy\Organization\Models\Traits\DivisionableTrait;
+
 class Company extends Organization {
+
+    use DivisionableTrait;
+    use MorphBaseTrait;
 
     protected $table = 'companies';
 
@@ -14,7 +20,7 @@ class Company extends Organization {
         'creating'    => ['sort'],
         'created'     => [],
         'updating'    => [],
-        'saved'       => ['syncToDepartments', 'syncToPositions'],
+        'saved'       => ['syncToDepartments', 'syncToPositions', 'syncToDivisions'],
         'deleted'     => [],
     ];
     
@@ -25,7 +31,8 @@ class Company extends Organization {
         'slug'        => ['order' => '20', 'update'=>['args'=>['readonly'=>'readonly']]],
         'departments' => ['order' => '30', 'type'=>'selectMultiList', 'create'=>'deny', 'update'=>[], 'relation'=>'fieldDepartments', 'args'=>['name'=>'departments[]']],
         'positions'   => ['order' => '35', 'type'=>'selectMultiList', 'create'=>'deny', 'update'=>[], 'relation'=>'fieldPositions', 'args'=>['name'=>'positions[]']],
-        'description' => ['order' => '40'],
+        'divisions'     => ['order' => '40', 'type'=>'selectMultiList', 'create'=>'deny', 'update'=>[], 'relation'=>'fieldDivisions', 'args'=>['name'=>'divisions[]']],
+        'description' => ['order' => '50'],
     ];
 
     public function fieldDepartments($id)
@@ -44,6 +51,14 @@ class Company extends Organization {
         ];
     }
 
+    public function fieldDivisions($id)
+    {
+        return [
+            'option' => $this->getLists('division'),
+            'value'  => $this->find($id)->divisions->implode('id', ',')
+        ];
+    }
+
     public function eventSyncToDepartments($key, $model)
     {
         if ( ! isset(self::$inputData['departments'])) return;
@@ -56,6 +71,13 @@ class Company extends Organization {
         if ( ! isset(self::$inputData['positions'])) return;
 
         return $this->syncMorph($model, 'positions');
+    }
+
+    public function eventSyncToDivisions($key, $model)
+    {
+        if ( ! isset(self::$inputData['divisions'])) return;
+
+        return $this->syncMorph($model, 'divisions');
     }
     
     public function departments()

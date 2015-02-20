@@ -1,7 +1,7 @@
 <?php namespace Sharenjoy\Organization;
 
 use Sharenjoy\Organization\Contracts\ProviderInterface;
-use App, Config;
+use App;
 
 class OrganizationProvider implements ProviderInterface {
 
@@ -9,7 +9,7 @@ class OrganizationProvider implements ProviderInterface {
 
     public function __construct()
     {
-        $this->allowProvider = Config::get('organization.allowProvider');
+        $this->allowProvider = config('organization.allowProvider');
     }
 
     protected function fetchInstance($key)

@@ -1,6 +1,12 @@
 <?php namespace Sharenjoy\Organization\Models;
 
+use Sharenjoy\Organization\Models\Traits\MorphBaseTrait;
+use Sharenjoy\Organization\Models\Traits\DivisionableTrait;
+
 class Department extends Organization {
+
+    use DivisionableTrait;
+    use MorphBaseTrait;
     
     protected $table = 'departments';
 
@@ -14,7 +20,7 @@ class Department extends Organization {
         'creating'    => ['sort'],
         'created'     => [],
         'updating'    => [],
-        'saved'       => ['syncToCompanies'],
+        'saved'       => ['syncToCompanies', 'syncToDivisions'],
         'deleted'     => [],
     ];
     
@@ -24,7 +30,8 @@ class Department extends Organization {
         'name'        => ['order' => '10'],
         'slug'        => ['order' => '20', 'update'=>['args'=>['readonly'=>'readonly']]],
         'companies'   => ['order' => '30', 'type'=>'selectMultiList', 'create'=>'deny', 'update'=>[], 'relation'=>'fieldCompanies', 'args'=>['name'=>'companies[]']],
-        'description' => ['order' => '40'],
+        'divisions'     => ['order' => '40', 'type'=>'selectMultiList', 'create'=>'deny', 'update'=>[], 'relation'=>'fieldDivisions', 'args'=>['name'=>'divisions[]']],
+        'description' => ['order' => '50'],
     ];
 
     public function fieldCompanies($id)
@@ -35,11 +42,26 @@ class Department extends Organization {
         ];
     }
 
+    public function fieldDivisions($id)
+    {
+        return [
+            'option' => $this->getLists('division'),
+            'value'  => $this->find($id)->divisions->implode('id', ',')
+        ];
+    }
+
     public function eventSyncToCompanies($key, $model)
     {
         if ( ! isset(self::$inputData['companies'])) return;
 
         return $this->syncMorph($model, 'companies');
+    }
+
+    public function eventSyncToDivisions($key, $model)
+    {
+        if ( ! isset(self::$inputData['divisions'])) return;
+
+        return $this->syncMorph($model, 'divisions');
     }
 
     public function employees()
@@ -50,11 +72,6 @@ class Department extends Organization {
     public function companies()
     {
         return $this->belongsToMany($this->getOrganizationConfig('company.model'));
-    }
-
-    public function divisions()
-    {
-        return $this->hasMany($this->getOrganizationConfig('division.model'));
     }
 
 }

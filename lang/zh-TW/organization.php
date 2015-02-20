@@ -30,11 +30,13 @@ return [
             'name'                => '公司名稱',
             'departments'         => '部門設定',
             'positions'           => '職位設定',
+            'divisions'           => '組成組別',
         ],
 
         'department' => [
             'name'                => '部門名稱',
             'companies'           => '所屬公司',
+            'divisions'           => '組成組別',
         ],
 
         'position' => [
@@ -45,6 +47,8 @@ return [
         'division' => [
             'name'                => '組別名稱',
             'roles'               => '組成職責',
+            'companies'           => '所屬公司',
+            'departments'         => '所屬部門',
             'employees'           => '組成職員',
         ],
 
