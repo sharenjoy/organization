@@ -242,31 +242,4 @@ return [
 
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | The utility options
-    |--------------------------------------------------------------------------
-    |
-    | This is the option that
-    | providers some drop down selection
-    |
-    */
-
-    'select_processors_options' => [
-
-        /*
-        |--------------------------------------------------------------------------
-        | This option is for processors filter
-        |--------------------------------------------------------------------------
-        |
-        */
-       
-        'company'    => 'organization::organization.company',
-        'department' => 'organization::organization.department',
-        'position'   => 'organization::organization.position',
-        'role'       => 'organization::organization.role',
-        'division'   => 'organization::organization.division',
-        'employee'   => 'organization::organization.employee'
-    ],
-
 ];
