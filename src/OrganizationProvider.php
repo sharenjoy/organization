@@ -1,11 +1,20 @@
 <?php namespace Sharenjoy\Organization;
 
 use Sharenjoy\Organization\Contracts\ProviderInterface;
-use App;
 
 class OrganizationProvider implements ProviderInterface {
 
+    /**
+     * This is the provider that is allowed
+     * @var array
+     */
     protected $allowProvider;
+
+    /**
+     * This is the Factory object
+     * @var object
+     */
+    protected $fieldInstance;
 
     public function __construct()
     {
@@ -16,7 +25,7 @@ class OrganizationProvider implements ProviderInterface {
     {
         $interface = studly_case($key).'Interface';
 
-        return App::make("Sharenjoy\Organization\Contracts\\$interface");
+        return app()->make("Sharenjoy\Organization\Contracts\\$interface");
     }
 
     private function checkTheGivenProvider($provider)
@@ -27,6 +36,11 @@ class OrganizationProvider implements ProviderInterface {
         }
     }
 
+    /**
+     * To reveive the model instance from the given provider
+     * @param  string $provider
+     * @return Model
+     */
     public function model($provider)
     {
         $this->checkTheGivenProvider($provider);
@@ -36,6 +50,11 @@ class OrganizationProvider implements ProviderInterface {
         return $instance->getModel();
     }
 
+    /**
+     * To receive the repository instance from the given provider
+     * @param  string $provider
+     * @return Object
+     */
     public function repo($provider)
     {
         $this->checkTheGivenProvider($provider);
@@ -43,6 +62,22 @@ class OrganizationProvider implements ProviderInterface {
         $instance = $this->fetchInstance($provider);
 
         return $instance;
+    }
+
+    /**
+     * To fetch the form field with the related model
+     * @param  string $field
+     * @param  Request $request
+     * @return string
+     */
+    public function field($field, $request, $type = null)
+    {
+        if ( ! $this->fieldInstance)
+        {
+            $this->fieldInstance = new Factories\FieldFactory;
+        }
+
+        return $this->fieldInstance->field($field, $request, $type);
     }
 
 }
