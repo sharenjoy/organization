@@ -1,22 +1,22 @@
 <?php namespace Sharenjoy\Organization\Factories\Fields;
 
-class Company extends AbstractField {
+class Role extends AbstractField {
 
     protected function getOptions()
     {
-        $items = \Company::showAll()->lists('name', 'slug');
+        $items = \Role::showAll()->lists('name', 'slug');
 
         return $this->combineOptions($items);
     }
 
     protected function getLastOne()
     {
-        return 'company';
+        return 'role';
     }
 
     public function make()
     {
-        return $this->getField().$this->getLastOneField().$this->getThisIsValueField();
+        return $this->getField().$this->getLastOneField().$this->getThisIsValueField().$this->getTheLastField();
     }
 
 }

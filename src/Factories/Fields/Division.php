@@ -1,21 +1,24 @@
 <?php namespace Sharenjoy\Organization\Factories\Fields;
 
-class Division {
+class Division extends AbstractField {
 
-    /**
-     * This is the http request object
-     * @var array
-     */
-    protected $request;
-
-    public function __construct($request)
+    protected function getOptions()
     {
-        $this->request = $request;
+        $data = $this->fetchFlowerProcessorsSession() ?: [];
+
+        $items = \Division::showAboveRelationshipLists($data);
+
+        return $this->combineOptions($items);
     }
 
-    public function make($type)
+    protected function getLastOne()
     {
-        return 'Division';
+        return 'division';
+    }
+
+    public function make()
+    {
+        return $this->getField().$this->getLastOneField().$this->getThisIsValueField();
     }
 
 }

@@ -2,18 +2,24 @@
 
 class FieldFactory extends AbstractFactory {
 
-    public function field($field, $request, $type)
+    public function field($name, $request = null, $type = null)
     {
         $namespace = 'Sharenjoy\Organization\Factories\Fields\\';
 
-        $classname = $namespace.studly_case($field);
+        $classname = $namespace.studly_case($name);
 
         if ( ! class_exists($classname))
         {
-            throw new \InvalidArgumentException("This is wrong method of argument {$field}");
+            throw new \InvalidArgumentException("This is wrong method of argument {$name}");
         }
 
-        return (new $classname($request))->make($type);
+        $fieldInstance = new $classname;
+
+        if ($request) $fieldInstance->setRequest($request);
+
+        if ($type) $fieldInstance->setType($type);
+
+        return $fieldInstance->make();
     }
 
 }

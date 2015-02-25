@@ -14,7 +14,7 @@ class Division extends Organization {
         'creating'    => ['sort'],
         'created'     => [],
         'updating'    => [],
-        'saved'       => ['syncToRoles', 'syncToEmployees', 'syncToCompanys', 'syncToDepartments'],
+        'saved'       => ['syncToRoles', 'syncToEmployees', 'syncToCompanies', 'syncToDepartments'],
         'deleted'     => [],
     ];
     

@@ -1,24 +1,24 @@
 <?php namespace Sharenjoy\Organization\Factories\Fields;
 
-class Department extends AbstractField {
+class Position extends AbstractField {
 
     protected function getOptions()
     {
         $data = $this->fetchFlowerProcessorsSession() ?: [];
 
-        $items = \Department::showAboveRelationshipLists($data);
+        $items = \Position::showAboveRelationshipLists($data);
 
         return $this->combineOptions($items);
     }
 
     protected function getLastOne()
     {
-        return 'department';
+        return 'position';
     }
 
     public function make()
     {
-        return $this->getField().$this->getLastOneField().$this->getThisIsValueField();
+        return $this->getField().$this->getLastOneField().$this->getThisIsValueField().$this->getTheLastField();
     }
 
 }
