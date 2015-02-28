@@ -4,7 +4,9 @@ class Role extends AbstractField {
 
     protected function getOptions()
     {
-        $items = \Role::showAll()->lists('name', 'slug');
+        $data = $this->fetchFlowerProcessorsSession() ?: [];
+
+        $items = \Role::showAboveRelationshipLists($data);
 
         return $this->combineOptions($items);
     }

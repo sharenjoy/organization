@@ -128,6 +128,22 @@ return [
         
         'validator'  => 'Sharenjoy\Organization\Validators\PositionValidator',
 
+        /*
+        |--------------------------------------------------------------------------
+        | These are allowed model positionable
+        | key: The key is relationshop method of model
+        | value: This is relationship
+        | sample: 'employees' => 'Sharenjoy\Organization\Models\Employee'
+        |--------------------------------------------------------------------------
+        |
+        */
+       
+        'morphed' => [
+
+            'employees' => 'Sharenjoy\Organization\Models\Employee',
+
+        ],
+
     ],
 
     /*
@@ -166,8 +182,7 @@ return [
        
         'morphed' => [
 
-            'companies' => 'Sharenjoy\Organization\Models\Company',
-            'departments' => 'Sharenjoy\Organization\Models\Department',
+            'roles' => 'Sharenjoy\Organization\Models\Role',
             'employees' => 'Sharenjoy\Organization\Models\Employee',
 
         ],

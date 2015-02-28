@@ -52,26 +52,22 @@ class Department extends Organization {
 
     public function eventSyncToCompanies($key, $model)
     {
-        if ( ! isset(self::$inputData['companies'])) return;
-
         return $this->syncMorph($model, 'companies');
     }
 
     public function eventSyncToDivisions($key, $model)
     {
-        if ( ! isset(self::$inputData['divisions'])) return;
-
         return $this->syncMorph($model, 'divisions');
-    }
-
-    public function employees()
-    {
-        return $this->hasMany($this->getOrganizationConfig('employee.model'));
     }
 
     public function companies()
     {
         return $this->belongsToMany($this->getOrganizationConfig('company.model'));
+    }
+
+    public function employees()
+    {
+        return $this->hasMany($this->getOrganizationConfig('employee.model'));
     }
 
 }

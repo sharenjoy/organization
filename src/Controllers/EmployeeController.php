@@ -14,8 +14,8 @@ class EmployeeController extends OrganizationController {
 
     protected $listConfig = [
         'name'          => ['name'=>'name',         'align'=>'',       'width'=>''   ],
-        'company_id'    => ['name'=>'company',      'align'=>'',       'width'=>''   ],
-        'department_id' => ['name'=>'department',   'align'=>'',       'width'=>''   ],
+        'company_id'    => ['name'=>'company', 'lists'=>'employee.companies',     'align'=>'',       'width'=>''   ],
+        'department_id' => ['name'=>'department', 'lists'=>'employee.departments',  'align'=>'',       'width'=>''   ],
         'joined_at'     => ['name'=>'joined',       'align'=>'center', 'width'=>'20%'],
     ];
 

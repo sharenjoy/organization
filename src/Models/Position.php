@@ -14,7 +14,7 @@ class Position extends Organization {
         'creating'    => ['sort'],
         'created'     => [],
         'updating'    => [],
-        'saved'       => ['syncToCompanies'],
+        'saved'       => ['syncToEmployees'],
         'deleted'     => [],
     ];
     
@@ -23,33 +23,38 @@ class Position extends Organization {
     public $formConfig = [
         'name'        => ['order' => '10'],
         'slug'        => ['order' => '20', 'update'=>['args'=>['readonly'=>'readonly']]],
-        'companies'   => ['order' => '30', 'type'=>'selectMultiList', 'create'=>'deny', 'update'=>[], 'relation'=>'fieldCompanies', 'args'=>['name'=>'companies[]']],
+        'employees'   => ['order' => '30', 'type'=>'selectMulti', 'create'=>[], 'update'=>[], 'relation'=>'fieldEmployees', 'args'=>['name'=>'employees[]']],
         'description' => ['order' => '40'],
     ];
 
-    public function fieldCompanies($id)
+    public function fieldEmployees($id)
     {
-        return [
-            'option' => $this->getLists('company'),
-            'value'  => $this->find($id)->companies->implode('id', ',')
-        ];
+        $content['value'] = $id != '' ? $this->find($id)->employees()->get()->implode('id', ',') : '';
+        $content['option'] = $this->getLists('employee');
+        
+        return $content;
     }
 
-    public function eventSyncToCompanies($key, $model)
+    public function eventSyncToEmployees($key, $model)
     {
-        if ( ! isset(self::$inputData['companies'])) return;
-
-        return $this->syncMorph($model, 'companies');
+        return $this->syncMorph($model, 'employees');
     }
 
-    public function employees()
+    public static function withAllRelation()
     {
-        return $this->hasMany($this->getOrganizationConfig('employee.model'));
+        return static::with(array_keys(config('organization.position.morphed')));
     }
 
-    public function companies()
+    public function __call($method, $parameters)
     {
-        return $this->belongsToMany($this->getOrganizationConfig('company.model'));
+        $morphed = $this->getOrganizationConfig('position.morphed');
+
+        if (array_key_exists($method, $morphed))
+        {
+            return $this->morphedByMany($morphed[$method], 'positionable');
+        }
+
+        return parent::__call($method, $parameters);
     }
 
 }

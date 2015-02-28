@@ -11,5 +11,4 @@ class CompanyRepository extends OrganizationRepository implements CompanyInterfa
         $this->model     = $model;
     }
 
-    
 }

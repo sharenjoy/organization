@@ -1,13 +1,15 @@
 <?php namespace Sharenjoy\Organization\Models;
 
 use Sharenjoy\Organization\Models\Traits\MorphBaseTrait;
-use Sharenjoy\Organization\Models\Traits\RoleableTrait;
+use Sharenjoy\Organization\Models\Traits\PositionableTrait;
 use Sharenjoy\Organization\Models\Traits\DivisionableTrait;
+use Sharenjoy\Organization\Models\Traits\RoleableTrait;
 
 class Employee extends Organization {
 
-    use RoleableTrait;
+    use PositionableTrait;
     use DivisionableTrait;
+    use RoleableTrait;
     use MorphBaseTrait;
     
     protected $table = 'employees';
@@ -15,7 +17,6 @@ class Employee extends Organization {
     protected $fillable = [
         'company_id',
         'department_id',
-        'position_id',
         'name',
         'name_en',
         'email',
@@ -28,7 +29,7 @@ class Employee extends Organization {
         'creating'    => [],
         'created'     => [],
         'updating'    => [],
-        'saved'       => ['syncToDivisions', 'syncToRoles'],
+        'saved'       => ['syncToPositions', 'syncToDivisions', 'syncToRoles'],
         'deleted'     => [],
     ];
     
@@ -38,7 +39,7 @@ class Employee extends Organization {
         'name'          => ['order' => '10'],
         'company_id'    => ['order' => '20', 'type'=>'select', 'method'=>'fieldCompany', 'pleaseSelect' => true],
         'department_id' => ['order' => '30', 'type'=>'select', 'method'=>'fieldDepartment', 'pleaseSelect' => true],
-        'position_id'   => ['order' => '40', 'type'=>'select', 'method'=>'fieldPosition', 'pleaseSelect' => true],
+        'positions'     => ['order' => '40', 'type'=>'selectMultiList', 'create'=>'deny', 'update'=>[], 'relation'=>'fieldpositions', 'args'=>['name'=>'positions[]']],
         'divisions'     => ['order' => '50', 'type'=>'selectMultiList', 'create'=>'deny', 'update'=>[], 'relation'=>'fieldDivisions', 'args'=>['name'=>'divisions[]']],
         'roles'         => ['order' => '60', 'type'=>'selectMultiList', 'create'=>'deny', 'update'=>[], 'relation'=>'fieldRoles', 'args'=>['name'=>'roles[]']],
         'name_en'       => ['order' => '70'],
@@ -56,9 +57,12 @@ class Employee extends Organization {
         return ['option' => $this->getLists('department')];
     }
 
-    public function fieldPosition()
+    public function fieldPositions($id)
     {
-        return ['option' => $this->getLists('position')];
+        return [
+            'option' => $this->getLists('position'),
+            'value'  => $this->find($id)->positions->implode('id', ',')
+        ];
     }
 
     public function fieldDivisions($id)
@@ -77,33 +81,29 @@ class Employee extends Organization {
         ];
     }
 
+    public function eventSyncToPositions($key, $model)
+    {
+        return $this->syncMorph($model, 'positions');
+    }
+
     public function eventSyncToDivisions($key, $model)
     {
-        if ( ! isset(self::$inputData['divisions'])) return;
-
         return $this->syncMorph($model, 'divisions');
     }
 
     public function eventSyncToRoles($key, $model)
     {
-        if ( ! isset(self::$inputData['roles'])) return;
-
         return $this->syncMorph($model, 'roles');
     }
 
-    public function getCompaniesLists()
+    public function grabCompaniesLists()
     {
         return $this->getLists('company');
     }
 
-    public function getDepartmentsLists()
+    public function grabDepartmentsLists()
     {
         return $this->getLists('department');
-    }
-
-    public function getPositionsLists()
-    {
-        return $this->getLists('position');
     }
 
     public function company()
@@ -114,11 +114,6 @@ class Employee extends Organization {
     public function department()
     {
         return $this->belongsTo($this->getOrganizationConfig('department.model'));
-    }
-
-    public function position()
-    {
-        return $this->belongsTo($this->getOrganizationConfig('position.model'));
     }
 
     public function listQuery()

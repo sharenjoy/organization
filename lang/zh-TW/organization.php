@@ -28,20 +28,23 @@ return [
 
         'company' => [
             'name'                => '公司名稱',
-            'departments'         => '部門設定',
-            'positions'           => '職位設定',
+            'departments'         => '組成部門',
+            'positions'           => '組成職位',
             'divisions'           => '組成組別',
         ],
 
         'department' => [
             'name'                => '部門名稱',
             'companies'           => '所屬公司',
+            'positions'           => '組成職位',
             'divisions'           => '組成組別',
         ],
 
         'position' => [
             'name'                => '職位名稱',
             'companies'           => '所屬公司',
+            'departments'         => '所屬部門',
+            'employees'           => '組成職員',
         ],
 
         'division' => [
@@ -61,7 +64,7 @@ return [
         'employee' => [
             'company_id'          => '所屬公司',
             'department_id'       => '所屬部門',
-            'position_id'         => '所屬職位',
+            'positions'           => '所屬職位',
             'divisions'           => '所屬組別',
             'roles'               => '所屬職責',
         ],

@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::group(['prefix' => 'admin'], function()
+Route::group(['prefix' => $accessUrl], function()
 {
     Route::controller('company'    , 'Sharenjoy\Organization\Controllers\CompanyController');
     Route::controller('department' , 'Sharenjoy\Organization\Controllers\DepartmentController');

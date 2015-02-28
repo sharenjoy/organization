@@ -1,9 +1,13 @@
 <?php namespace Sharenjoy\Organization\Models;
 
-use Config;
+use Sharenjoy\Organization\Models\Traits\MorphBaseTrait;
+use Sharenjoy\Organization\Models\Traits\DivisionableTrait;
 
 class Role extends Organization {
     
+    use DivisionableTrait;
+    use MorphBaseTrait;
+
     protected $table = 'roles';
 
     protected $fillable = [
@@ -34,7 +38,7 @@ class Role extends Organization {
     {
         return [
             'option' => $this->getLists('division'),
-            'value'  => $this->find($id)->divisions->implode('id', ',')
+            'value'  => $this->find($id)->divisions()->get()->implode('id', ',')
         ];
     }
 
@@ -48,30 +52,17 @@ class Role extends Organization {
 
     public function eventSyncToDivisions($key, $model)
     {
-        if ( ! isset(self::$inputData['divisions'])) return;
-
         return $this->syncMorph($model, 'divisions');
     }
 
     public function eventSyncToEmployees($key, $model)
     {
-        if ( ! isset(self::$inputData['employees'])) return;
-
         return $this->syncMorph($model, 'employees');
-    }
-
-    public function divisions()
-    {
-        return $this->belongsToMany($this->getOrganizationConfig('division.model'));
     }
 
     public static function withAllRelation()
     {
-        $morphed = Config::get('organization.role.morphed');
-        
-        $keys = array_keys($morphed);
-
-        return static::with($keys);
+        return static::with(array_keys(config('organization.role.morphed')));
     }
 
     public function __call($method, $parameters)

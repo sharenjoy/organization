@@ -26,34 +26,6 @@ class DivisionRepository extends OrganizationRepository implements DivisionInter
     {
         $builder = $this->model->query();
 
-        if (isset($data['company']))
-        {
-            $builder = $builder->whereHas('companies', function($query) use ($data)
-            {
-                foreach ($data['company'] as $key => $value)
-                {
-                    if ($key == 0)
-                        $query->where('slug', $value);
-                    else
-                        $query->orWhere('slug', $value);
-                }
-            });
-        }
-
-        if (isset($data['department']))
-        {
-            $builder = $builder->whereHas('departments', function($query) use ($data)
-            {
-                foreach ($data['department'] as $key => $value)
-                {
-                    if ($key == 0)
-                        $query->where('slug', $value);
-                    else
-                        $query->orWhere('slug', $value);
-                }
-            });
-        }
-
         return $builder->orderBy('sort')->lists('name', 'slug');
     }
 

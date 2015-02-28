@@ -3,23 +3,23 @@
 use Sharenjoy\Cmsharenjoy\Core\Traits\CommonModelTrait;
 use Sharenjoy\Cmsharenjoy\Core\Traits\EventModelTrait;
 use Organization as OrganizationProvider;
-use Eloquent, Config;
+use Eloquent;
 
 abstract class Organization extends Eloquent {
 
     use CommonModelTrait;
     use EventModelTrait;
     
-    protected static $modelConfig = null;
+    protected $modelConfig = null;
 
     protected function getOrganizationConfig($key)
     {
-        if (is_null(static::$modelConfig))
+        if (is_null($this->modelConfig))
         {
-            static::$modelConfig = Config::get('organization');
+            $this->modelConfig = config('organization');
         }
 
-        $config = array_get(static::$modelConfig, $key);
+        $config = array_get($this->modelConfig, $key);
 
         if ( ! $config)
         {
@@ -49,6 +49,8 @@ abstract class Organization extends Eloquent {
 
     public function syncMorph($model, $morph)
     {
+        if ( ! isset(self::$inputData[$morph])) return;
+
         if (empty(self::$inputData[$morph]))
         {
             return $model->$morph()->detach();

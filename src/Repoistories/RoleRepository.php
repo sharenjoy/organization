@@ -11,5 +11,36 @@ class RoleRepository extends OrganizationRepository implements RoleInterface {
         $this->model     = $model;
     }
 
+    /**
+     * To show the lists data from the above relationship
+     * $data variable format is the same of following
+     * [
+     *     'company'    => ['0'=>'saya', '1'=>'bizin'],
+     *     'department' => ['0'=>'ae', '1'=>'am', '2'=>'mm', '3'=>'gap'],
+     *     'division'   => ['0'=>'aeone', '1'=>'amone'],
+     * ]
+     * @param  array $data
+     * @return array The data of lists
+     */
+    public function showAboveRelationshipLists($data)
+    {
+        $builder = $this->model->query();
+
+        if (isset($data['division']))
+        {
+            $builder = $builder->whereHas('divisions', function($query) use ($data)
+            {
+                foreach ($data['division'] as $key => $value)
+                {
+                    if ($key == 0)
+                        $query->where('slug', $value);
+                    else
+                        $query->orWhere('slug', $value);
+                }
+            });
+        }
+
+        return $builder->orderBy('sort')->lists('name', 'slug');
+    }
 
 }

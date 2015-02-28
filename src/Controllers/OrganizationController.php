@@ -1,7 +1,6 @@
 <?php namespace Sharenjoy\Organization\Controllers;
 
 use Sharenjoy\Cmsharenjoy\Http\Controllers\ObjectBaseController;
-use View, Config;
 
 class OrganizationController extends ObjectBaseController {
 
@@ -12,7 +11,7 @@ class OrganizationController extends ObjectBaseController {
 
     protected function getPackageInfo()
     {
-        return Config::get('organization.package');
+        return config('organization.package');
     }
 
 }

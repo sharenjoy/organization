@@ -4,7 +4,9 @@ class Employee extends AbstractField {
 
     protected function getOptions()
     {
-        $items = \Employee::showAll()->lists('name', 'id');
+        $data = $this->fetchFlowerProcessorsSession() ?: [];
+
+        $items = \Employee::showAboveRelationshipLists($data);
 
         return $this->combineOptions($items);
     }
