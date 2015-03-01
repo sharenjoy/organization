@@ -4,9 +4,7 @@ class Department extends AbstractField {
 
     protected function getOptions()
     {
-        $data = $this->fetchFlowerProcessorsSession() ?: [];
-
-        $items = \Department::showAboveRelationshipLists($data);
+        $items = \Department::showAboveRelationshipLists($this->getFilterData());
 
         return $this->combineOptions($items);
     }

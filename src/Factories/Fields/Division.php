@@ -4,9 +4,7 @@ class Division extends AbstractField {
 
     protected function getOptions()
     {
-        $data = $this->fetchFlowerProcessorsSession() ?: [];
-
-        $items = \Division::showAboveRelationshipLists($data);
+        $items = \Division::showAboveRelationshipLists($this->getFilterData());
 
         return $this->combineOptions($items);
     }

@@ -6,6 +6,8 @@ abstract class AbstractField {
 
     protected $request;
 
+    protected $filterData;
+
     public function setType($type)
     {
         $this->type = $type;
@@ -20,9 +22,21 @@ abstract class AbstractField {
         return $this;
     }
 
-    protected function fetchFlowerProcessorsSession()
+    public function setFilterData($data)
     {
-        return session('sharenjoy.flower.processors.organization');
+        $this->filterData = $data;
+
+        return $this;
+    }
+
+    protected function getFilterData()
+    {
+        if ($this->filterData)
+        {
+            return $this->filterData;
+        }
+
+        return [];
     }
 
     protected function combineOptions($items)

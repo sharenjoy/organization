@@ -4,9 +4,7 @@ class Position extends AbstractField {
 
     protected function getOptions()
     {
-        $data = $this->fetchFlowerProcessorsSession() ?: [];
-
-        $items = \Position::showAboveRelationshipLists($data);
+        $items = \Position::showAboveRelationshipLists($this->getFilterData());
 
         return $this->combineOptions($items);
     }
