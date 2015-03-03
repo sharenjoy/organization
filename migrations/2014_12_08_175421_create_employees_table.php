@@ -19,6 +19,7 @@ class CreateEmployeesTable extends Migration {
                 $table->engine = 'InnoDB';
 
                 $table->increments('id')->index();
+                $table->integer('user_id')->index()->default(0);
                 $table->integer('company_id')->index()->default(0);
                 $table->integer('department_id')->index()->default(0);
                 $table->string('name', 20);
