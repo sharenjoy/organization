@@ -167,6 +167,9 @@ class OrganizationServiceProvider extends ServiceProvider {
         
         // Loading routes file
         include __DIR__ . '/routes.php';
+
+        // Loading routes file
+        include __DIR__ . '/helpers.php';
     }
 
     /**
