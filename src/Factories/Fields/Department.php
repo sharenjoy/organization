@@ -9,14 +9,9 @@ class Department extends AbstractField {
         return $this->combineOptions($items);
     }
 
-    protected function getLastOne()
-    {
-        return 'department';
-    }
-
     public function make()
     {
-        return $this->getField().$this->getLastOneField().$this->getThisIsValueField();
+        return $this->getField();
     }
 
 }

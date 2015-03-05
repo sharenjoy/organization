@@ -9,14 +9,9 @@ class Company extends AbstractField {
         return $this->combineOptions($items);
     }
 
-    protected function getLastOne()
-    {
-        return 'company';
-    }
-
     public function make()
     {
-        return $this->getField().$this->getLastOneField().$this->getThisIsValueField();
+        return $this->getField();
     }
 
 }

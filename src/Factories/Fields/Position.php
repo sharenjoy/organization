@@ -9,14 +9,9 @@ class Position extends AbstractField {
         return $this->combineOptions($items);
     }
 
-    protected function getLastOne()
-    {
-        return 'position';
-    }
-
     public function make()
     {
-        return $this->getField().$this->getLastOneField().$this->getThisIsValueField().$this->getTheLastField();
+        return $this->getField();
     }
 
 }

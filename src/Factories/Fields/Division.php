@@ -9,14 +9,9 @@ class Division extends AbstractField {
         return $this->combineOptions($items);
     }
 
-    protected function getLastOne()
-    {
-        return 'division';
-    }
-
     public function make()
     {
-        return $this->getField().$this->getLastOneField().$this->getThisIsValueField();
+        return $this->getField();
     }
 
 }

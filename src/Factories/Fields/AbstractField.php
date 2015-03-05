@@ -78,19 +78,4 @@ abstract class AbstractField {
                 </select>';
     }
 
-    protected function getThisIsValueField()
-    {
-        return '<input type="hidden" name="thisisvalue" value="true">';
-    }
-
-    protected function getLastOneField()
-    {
-        return '<input type="hidden" name="lastone" value="'.$this->getLastOne().'">';
-    }
-
-    protected function getTheLastField()
-    {
-        return '<input type="hidden" name="thelast" value="true">';
-    }
-
 }
