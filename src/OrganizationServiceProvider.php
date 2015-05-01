@@ -30,7 +30,7 @@ class OrganizationServiceProvider extends ServiceProvider {
 	{
         $config = $this->app['config']->get('organization');
         
-        $this->app->singleton('Sharenjoy\Organization\Contracts\CompanyInterface', function() use ($config)
+        $this->app->bind('Sharenjoy\Organization\Contracts\CompanyInterface', function() use ($config)
         {
             switch ($config['driver'])
             {
@@ -46,7 +46,7 @@ class OrganizationServiceProvider extends ServiceProvider {
             }
         });
 
-        $this->app->singleton('Sharenjoy\Organization\Contracts\DepartmentInterface', function() use ($config)
+        $this->app->bind('Sharenjoy\Organization\Contracts\DepartmentInterface', function() use ($config)
         {
             switch ($config['driver'])
             {
@@ -62,7 +62,7 @@ class OrganizationServiceProvider extends ServiceProvider {
             }
         });
 
-        $this->app->singleton('Sharenjoy\Organization\Contracts\PositionInterface', function() use ($config)
+        $this->app->bind('Sharenjoy\Organization\Contracts\PositionInterface', function() use ($config)
         {
             switch ($config['driver'])
             {
@@ -78,7 +78,7 @@ class OrganizationServiceProvider extends ServiceProvider {
             }
         });
 
-        $this->app->singleton('Sharenjoy\Organization\Contracts\DivisionInterface', function() use ($config)
+        $this->app->bind('Sharenjoy\Organization\Contracts\DivisionInterface', function() use ($config)
         {
             switch ($config['driver'])
             {
@@ -94,7 +94,7 @@ class OrganizationServiceProvider extends ServiceProvider {
             }
         });
 
-        $this->app->singleton('Sharenjoy\Organization\Contracts\RoleInterface', function() use ($config)
+        $this->app->bind('Sharenjoy\Organization\Contracts\RoleInterface', function() use ($config)
         {
             switch ($config['driver'])
             {
@@ -110,7 +110,7 @@ class OrganizationServiceProvider extends ServiceProvider {
             }
         });
 
-        $this->app->singleton('Sharenjoy\Organization\Contracts\EmployeeInterface', function() use ($config)
+        $this->app->bind('Sharenjoy\Organization\Contracts\EmployeeInterface', function() use ($config)
         {
             switch ($config['driver'])
             {
@@ -127,7 +127,7 @@ class OrganizationServiceProvider extends ServiceProvider {
         });
 
         // For provider
-        $this->app->singleton('Sharenjoy\Organization\Contracts\ProviderInterface', function() use ($config)
+        $this->app->bind('Sharenjoy\Organization\Contracts\ProviderInterface', function() use ($config)
         {
             switch ($config['driver'])
             {
