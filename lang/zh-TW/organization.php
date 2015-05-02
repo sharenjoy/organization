@@ -13,13 +13,15 @@ return [
     ],
 
 
-    'company'    => '公司',
-    'department' => '部門',
-    'position'   => '職位',
-    'division'   => '組別',
-    'role'       => '職責',
-    'employee'   => '職員',
-    'joined'     => '入職日期',
+    'company'           => '公司',
+    'department'        => '部門',
+    'position'          => '職位',
+    'division'          => '組別',
+    'role'              => '職責',
+    'employee'          => '職員',
+    'joined'            => '入職日期',
+    'company_name'      => '公司名稱',
+    'company_full_name' => '公司全名',
 
     // For form    
     'form' => [
@@ -28,9 +30,15 @@ return [
 
         'company' => [
             'name'                => '公司名稱',
+            'full_name'           => '公司全名',
             'departments'         => '組成部門',
             'positions'           => '組成職位',
             'divisions'           => '組成組別',
+
+            'placeholder'         => [
+                'name'      => '例如：谷歌',
+                'full_name' => '例如：谷歌股份有限公司',
+            ],
         ],
 
         'department' => [

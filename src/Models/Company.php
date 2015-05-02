@@ -6,6 +6,7 @@ class Company extends Organization {
 
     protected $fillable = [
         'name',
+        'full_name',
         'slug',
         'description'
     ];
@@ -22,6 +23,7 @@ class Company extends Organization {
     
     public $formConfig = [
         'name'        => ['order' => '10'],
+        'full_name'   => ['order' => '15'],
         'slug'        => ['order' => '20', 'update'=>['args'=>['readonly'=>'readonly']]],
         'departments' => ['order' => '30', 'type'=>'selectMultiList', 'create'=>'deny', 'update'=>[], 'relation'=>'fieldDepartments', 'args'=>['name'=>'departments[]']],
         'description' => ['order' => '40'],

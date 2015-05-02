@@ -13,9 +13,10 @@ class CompanyController extends OrganizationController {
     ];
 
     protected $listConfig = [
-        'name'         => ['name'=>'title',        'align'=>'',       'width'=>''   ],
-        'slug'         => ['name'=>'slug',         'align'=>'',       'width'=>''   ],
-        'created_at'   => ['name'=>'created',      'align'=>'center', 'width'=>'20%'],
+        'name'         => ['name'=>'company_name',      'align'=>'',       'width'=>''   ],
+        'full_name'    => ['name'=>'company_full_name', 'align'=>'',       'width'=>''   ],
+        'slug'         => ['name'=>'slug',              'align'=>'',       'width'=>''   ],
+        'created_at'   => ['name'=>'created',           'align'=>'center', 'width'=>'20%'],
     ];
 
     public function __construct(CompanyInterface $repo)
