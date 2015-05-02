@@ -166,7 +166,10 @@ class OrganizationServiceProvider extends ServiceProvider {
         $this->makeAlias();
         
         // Loading routes file
-        include __DIR__ . '/routes.php';
+        if ($this->app['config']->get('organization.routeFromPackage') === true)
+        {
+            include __DIR__ . '/routes.php';
+        }
 
         // Loading routes file
         include __DIR__ . '/helpers.php';
