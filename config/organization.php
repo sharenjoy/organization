@@ -37,7 +37,7 @@ return [
     |
     */
 
-    'routeFromPackage' => false,
+    'routeFromPackage' => true,
 
     /*
     |--------------------------------------------------------------------------
