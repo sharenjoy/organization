@@ -27,6 +27,7 @@ class CreateEmployeesTable extends Migration {
                 $table->string('email', 100);
                 $table->timestamp('joined_at');
                 $table->timestamps();
+                $table->softDeletes();
             });
         }
 	}

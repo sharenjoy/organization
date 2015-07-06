@@ -24,6 +24,7 @@ class CreatePositionsTable extends Migration {
                 $table->text('description')->nullable();
                 $table->integer('sort')->default(0);
                 $table->timestamps();
+                $table->softDeletes();
             });
         }
 	}
