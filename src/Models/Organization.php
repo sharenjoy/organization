@@ -1,5 +1,6 @@
 <?php namespace Sharenjoy\Organization\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Sharenjoy\Cmsharenjoy\Core\Traits\CommonModelTrait;
 use Sharenjoy\Cmsharenjoy\Core\Traits\EventModelTrait;
 use Organization as OrganizationProvider;
@@ -9,7 +10,10 @@ abstract class Organization extends Eloquent {
 
     use CommonModelTrait;
     use EventModelTrait;
+    use SoftDeletes;
     
+    protected $dates = ['deleted_at'];
+
     protected $modelConfig = null;
 
     protected function getOrganizationConfig($key)
